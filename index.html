@@ -1,422 +1,490 @@
-<html><head>
-
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Publications archive, organized by year.">
+<title>Publications</title>
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        background: #fafafa;
-        padding: 20px;
-    }
-    .year-header {
-        font-size: 20px;
-        font-weight: bold;
-        cursor: pointer;
-        margin: 20px 0 10px;
-        color: #222;
-        background: #f2f2f2;
-        padding: 10px 15px;
-        border-radius: 6px;
-        transition: 0.2s;
-    }
-    .year-header:hover {
-        background-color: #e0e0e0;
-    }
-    .paper-list {
-        display: none;
-        margin-left: 10px;
-        margin-bottom: 20px;
-    }
-    .paper {
-        display: flex;
-        gap: 15px;
-        margin-bottom: 25px;
-        background: #ffffff;
-        padding: 12px;
-        border-radius: 8px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-        align-items: flex-start;
-    }
-    .paper img {
-        width: 160px;
-        border-radius: 5px;
-    }
-    .paper .info {
-        flex: 1;
-    }
-    .title {
-        font-size: 12pt;
-        color: #000000;
-        margin: 4px 0;
-        font-weight: bold;
-    }
-    .title a {
-        color: #003366;
-        text-decoration: none;
-    }
-    .title a:hover {
-        text-decoration: underline;
-        color: #0055aa;
-    }
-    .meta {
-        font-size: 10pt;
-        color: #666666;
-    }
-    .divider {
-        background: #ddd;
-        padding: 10px 15px;
-        font-size: 15px;
-        font-weight: bold;
-        border-left: 5px solid #333;
-        margin: 25px 0;
-        border-radius: 4px;
-        color: #333;
-    }
-    @media (max-width: 600px) {
-        .paper {
-            flex-direction: column;
-            align-items: center;
-        }
-        .paper img {
-            width: 80%;
-        }
-    }
+:root{color-scheme:light;--ink:#182c3d;--muted:#627181;--blue:#174c74;--line:#e1e7ed;--bg:#f7f9fb}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.6}main{max-width:1100px;margin:auto;padding:56px 28px 64px}h1{font-size:clamp(30px,5vw,42px);letter-spacing:-1px;line-height:1.2;margin:0 0 12px}.intro{margin:0;color:var(--muted)}.toolbar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:28px 0 24px}.search{flex:1;min-width:220px}.search label{display:block;font-size:12px;font-weight:bold;margin-bottom:5px;color:var(--muted)}input{width:100%;padding:12px 14px;border:1px solid #c9d3dc;border-radius:8px;background:white;font:inherit;color:var(--ink)}.actions{display:flex;gap:8px;align-self:flex-end}button{padding:12px 14px;border:1px solid #c9d3dc;background:white;border-radius:8px;color:var(--blue);font:inherit;font-size:13px;cursor:pointer}button:hover{background:#edf3f8}:focus-visible{outline:3px solid #3183bd;outline-offset:4px}.year{margin:0 0 18px;border:1px solid var(--line);border-radius:12px;background:white;overflow:hidden}.year>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;padding:18px 22px;background:#f0f4f8;font-size:21px;font-weight:bold}.year>summary::-webkit-details-marker{display:none}.count{font-size:12px;font-weight:normal;background:white;border:1px solid var(--line);padding:3px 10px;border-radius:30px;color:var(--muted)}.chevron{margin-left:auto;width:9px;height:9px;border-right:2px solid var(--blue);border-bottom:2px solid var(--blue);transform:rotate(45deg);transition:transform .18s}.year[open] .chevron{transform:rotate(225deg)}.paper-list{padding:0 22px}.paper{display:grid;grid-template-columns:160px minmax(0,1fr);gap:24px;padding:26px 0;border-bottom:1px solid var(--line)}.paper:last-child{border-bottom:0}.figure{aspect-ratio:4/3;background:#f7f9fb;border:1px solid var(--line);border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden}.figure img{width:100%;height:100%;object-fit:contain}.missing{font-size:12px;color:var(--muted);padding:12px;text-align:center}.number{display:block;font-size:11px;font-weight:bold;letter-spacing:.07em;color:var(--muted);margin-bottom:6px}.title{font-size:17px;line-height:1.45;margin:0 0 9px}.title a{color:var(--blue);text-decoration:none}.title a:hover{text-decoration:underline;text-underline-offset:3px}.authors{font-size:13px;color:var(--muted);margin:0 0 8px}.authors strong{color:var(--ink)}.citation{font-size:13px;margin:0;color:var(--ink)}.article-link{display:inline-block;font-size:12px;font-weight:bold;margin-top:12px;color:var(--blue);text-decoration:none}.article-link:hover{text-decoration:underline}.divider{display:flex;align-items:center;gap:14px;color:var(--muted);font-size:12px;letter-spacing:.03em;padding:18px 0}.divider:before,.divider:after{content:"";height:1px;background:var(--line);flex:1}.empty{padding:30px;text-align:center;color:var(--muted)}[hidden]{display:none!important}
+@media(max-width:600px){main{padding:30px 16px}.paper-list{padding:0 16px}.paper{grid-template-columns:1fr;gap:16px;padding:22px 0}.figure{width:min(100%,260px)}.title{font-size:16px}.year>summary{padding:15px 16px}.actions{width:100%}.actions button{flex:1}}
+@media(prefers-reduced-motion:reduce){.chevron{transition:none}}
+@media print{body{background:white}main{max-width:none;padding:0}.toolbar,.article-link,.chevron{display:none}.year{overflow:visible}.paper{break-inside:avoid}.year>summary{background:white}}
 </style>
-
-
+</head>
+<body>
+<main>
+<header><h1>Publications</h1><p class="intro" id="overview"></p></header>
+<div class="toolbar"><div class="search"><label for="search">Search publications</label><input type="search" id="search" placeholder="Title, author, journal, or year…" autocomplete="off"></div><div class="actions"><button id="expand" type="button">Expand all</button><button id="collapse" type="button">Collapse all</button></div></div>
+<p id="results" class="intro" role="status" aria-live="polite" hidden></p>
+<div id="publications"></div>
+<noscript><p>Please enable JavaScript to view the publication archive.</p></noscript>
+</main>
 <script>
-    function toggleVisibility(id) {
-        var el = document.getElementById(id);
-        el.style.display = (el.style.display === "none") ? "block" : "none";
-    }
+'use strict';
+// 논문 추가: 아래 배열에 객체를 하나 추가하세요. id는 고유번호이며 이미지 번호와 독립적으로 유지됩니다.
+// year: 표시 연도 / citation: 저널·권·페이지 / beforeChungAng: 이전 소속 여부
+// 기존 서지정보·연도·링크는 원본을 보존했습니다. 누락된 citation은 확인 후 입력하세요.
+const publications = [
+  {
+    "id": 43,
+    "year": 2025,
+    "title": "2D Silver Nanosheet Assembly for an Isotropic, Stretchable, and Highly Conductive Nanomembrane",
+    "authors": "M. Kim, S. Jung, S. Kim, M.-k. Choi, J.-H. Hong, K. Kim, C. Park, K. J. Yu, S.-H. Sunwoo, G. D. Cha, Q. Liu, D.-H. Kim, T.-W. Kim",
+    "citation": "Advanced Materials (2025)",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/43.png",
+    "url": "https://advanced.onlinelibrary.wiley.com/doi/10.1002/adma.202516002?af=R",
+    "beforeChungAng": false
+  },
+  {
+    "id": 42,
+    "year": 2025,
+    "title": "Chemically Anchored Metal-Hydrogel Bilayer Structures for Ultrasoft and Highly Conductive Biointerfaces",
+    "authors": "Y. A. Lee, J. Y. Lee, J. Kim, H. Lee, S. Park, S.-H. Sunwoo, G. D. Cha, D.-H. Kim",
+    "citation": "Nanoscale Horizons (2025)",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/42.png",
+    "url": "https://pubs.rsc.org/en/content/articlelanding/2026/nh/d5nh00540j",
+    "beforeChungAng": false
+  },
+  {
+    "id": 41,
+    "year": 2025,
+    "title": "Mesenchymal Stem Cell-Inspired Microneedle Platform: NIR-Responsive Therapeutic Delivery for Accelerated Chronic Wound Repair",
+    "authors": "C. H. Moon, H. G. Ko, H. Lee, S. Bang, H. S. Kang, J. Y. Gwon, J. H. Seo, M. Kang, D. Y. Lee, S.-H. Lee, G. D. Cha, K. Yang, D. Lim, H. Kang, S. R. Shin, H. Y. Kim, H.-D. Jung",
+    "citation": "Advanced Materials (2025)",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/41.png",
+    "url": "https://advanced.onlinelibrary.wiley.com/doi/10.1002/adma.202514081",
+    "beforeChungAng": false
+  },
+  {
+    "id": 40,
+    "year": 2025,
+    "title": "Intrinsically stretchable and transparent conductors for next-generation soft optoelectronics",
+    "authors": "J. S. Kim, J. Park, D. H. Kim, D. Kim, D.-H. Kim, D. C. Kim, G. D. Cha",
+    "citation": "Optical Materials Express 16, 55 (2025)",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/40.png",
+    "url": "https://www.nature.com/articles/s41427-025-00621-8",
+    "beforeChungAng": false
+  },
+  {
+    "id": 39,
+    "year": 2025,
+    "title": "Multifunctional microfluidic suture for accelerated healing and wound monitoring",
+    "authors": "Y. Kim, C. Park, G. D. Cha, S.-H. Sunwoo, D.-H. Kim",
+    "citation": "Lab on a Chip 25, 6582 (2025)",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/39.png",
+    "url": "https://pubs.rsc.org/en/content/articlehtml/2025/lc/d5lc00880h",
+    "beforeChungAng": false
+  },
+  {
+    "id": 38,
+    "year": 2025,
+    "title": "Emerging roles of hydrogels, organogels, and their hybrids in soft bioelectronics and bioplatforms",
+    "authors": "M. Y. Lee, E. S. Lee, N. Y. Ko, D.-H. Kim, G. D. Cha, J. H. Koo",
+    "citation": "npj Biosensing 2, 35 (2025)",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/38.png",
+    "url": "https://www.nature.com/articles/s44328-025-00055-w",
+    "beforeChungAng": false
+  },
+  {
+    "id": 37,
+    "year": 2025,
+    "title": "Multifunctional Liposomes: Smart Nanomaterials for Enhanced Photodynamic Therapy",
+    "authors": "J.-W. Yu, D. G. Kim, G. D. Cha",
+    "citation": "Biomimetics 10, 689 (2025)",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/37.png",
+    "url": "https://www.mdpi.com/2313-7673/10/10/689",
+    "beforeChungAng": false
+  },
+  {
+    "id": 36,
+    "year": 2025,
+    "title": "Integrated Closed-Loop Implantable Bioelectronic System Based on Intrinsically Stretchable and Conductive Nanocomposites",
+    "authors": "M. Y, Y. Kim, S. Nam, G. D. Cha, D.-H. Kim",
+    "citation": "Health Nanotechnology 1, 12 (2025)",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/36.png",
+    "url": "https://link.springer.com/article/10.1186/s44301-025-00012-6",
+    "beforeChungAng": false
+  },
+  {
+    "id": 35,
+    "year": 2025,
+    "title": "Multifunctional electronic skin integrating dual-mode optical and pressure sensors for caregiving robots",
+    "authors": "H. Heo, J. Park, D. Ko, K. Lee, J. Lee, H. Joo, J. Yang, G. D. Cha, D.-H. Kim, D. C. Kim",
+    "citation": "Nanoscale Horizons 10, 2896 (2025)",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/35.png",
+    "url": "https://pubs.rsc.org/en/content/articlelanding/2025/nh/d5nh00418g",
+    "beforeChungAng": false
+  },
+  {
+    "id": 34,
+    "year": 2025,
+    "title": "Fiber-type soft bioelectronics for wearable and implantable sensing and therapy",
+    "authors": "H. Kim, H. Y. Kim, J. H. Koo, G. D. Cha, D.-H. Kim, H. J. Kim",
+    "citation": "Biomedical Engineering Materials (2025)",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/34.png",
+    "url": "https://doi.org/10.1002/bmm2.70043",
+    "beforeChungAng": false
+  },
+  {
+    "id": 33,
+    "year": 2025,
+    "title": "Smart Nanomaterials for Multimodal Theranostics and Tissue Regeneration",
+    "authors": "H Lee, KS Kim, I Zare, SJ Bang, HS Kang, CH Moon, JY Gwon, JH Seo, H Joo, Y Cho, H Jung, H Rha, D Y Lee, K Yang, D Lim, SH Lee, G. D. Cha, K Na, MH Kang, HD Jung, H Kang",
+    "citation": "Coordination Chemistry Reviews 541, 216801 (2025)",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/33.png",
+    "url": "https://www.sciencedirect.com/science/article/pii/S0010854525003716",
+    "beforeChungAng": false
+  },
+  {
+    "id": 32,
+    "year": 2025,
+    "title": "Polymeric stabilization at gas-liquid interface enables high-performance durable photocatalysis",
+    "authors": "WH Lee, H Park, CW Lee, H Kim, JH Jeong, JI Yun, SU Bang, J Heo, KH Ahn, G. D. Cha, M Bootharaju, BH Lee, J Ryu, M Kim, T Hyeon, DH. Kim",
+    "citation": "Nature Nanotechnology",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/32.png",
+    "url": "https://www.nature.com/articles/s41565-025-01957-6",
+    "beforeChungAng": false
+  },
+  {
+    "id": 31,
+    "year": 2025,
+    "title": "Development of Cultivated Fish Meat: Advances in Cellular Agriculture, Biomaterials, and Scaffolding Techniques",
+    "authors": "HS Kang, S Bang, H Lee, CH Moon, JY Gwon, JH Seo, G. D. Cha, DH Lee, KY Lee, H Hwang, KH Yoo, JY Kim, H Kang, SH Lee, HH Park, DY Lee",
+    "citation": "Trends in Food Science & Technology (2025): 105088.",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/31.png",
+    "url": "https://www.sciencedirect.com/science/article/pii/S0924224425002249",
+    "beforeChungAng": false
+  },
+  {
+    "id": 30,
+    "year": 2025,
+    "title": "Liquid metal-based stretchable bioelectronic fiber for electrical stimulation and drug delivery in minimally invasive cardiac therapy",
+    "authors": "CH Park, YS Kim, SH Nam, HJ Kang, JH Moon, JH Kim, G. D. Cha, SP Lee, SH Sunwoo, DH Kim",
+    "citation": "",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/30.png",
+    "url": "https://pubs.aip.org/aip/apb/article/9/2/026118/3347386",
+    "beforeChungAng": false
+  },
+  {
+    "id": 29,
+    "year": 2025,
+    "title": "Extracellular-Matrix-Mimetic Hydrogels by Using Nanomaterials",
+    "authors": "DG Kim and G. D. Cha",
+    "citation": ", International Journal of Molecular Sciences 26, 11 (2025)",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/29.png",
+    "url": "https://www.mdpi.com/1422-0067/26/11/4987",
+    "beforeChungAng": false
+  },
+  {
+    "id": 28,
+    "year": 2025,
+    "title": "Joule-Assisted Nanotherapeutic Urethral Stent (JANUS) forSpatiotemporal Theragenerative Treatment of UrethralStrictures",
+    "authors": "YH Na, YB Park, H Lee, SH Kim, SJ Bang, HS Kang, CH Moon, JY Gwon, JH Seo, MH Kang, SH Lee, G. D. Cha, WR Park, HM Kang, JH Park, HD Jung",
+    "citation": "Advanced Functional Materials (2025): 2416694.",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/28.png",
+    "url": "https://advanced.onlinelibrary.wiley.com/doi/full/10.1002/adfm.202416694",
+    "beforeChungAng": false
+  },
+  {
+    "id": 27,
+    "year": 2025,
+    "title": "The Potential of Mesenchymal Stem Cell-Derived Exosomes to Treat Diabetes Mellitus",
+    "authors": "JE Kim, JW Lee, G. D. Cha, JK Yoon",
+    "citation": "Biomimetics 10, 49 (2025).",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/27.png",
+    "url": "https://www.mdpi.com/2313-7673/10/1/49",
+    "beforeChungAng": false
+  },
+  {
+    "id": 26,
+    "year": 2025,
+    "title": "Soft Cardiac Patch Using a Bifacial Architecture of Adhesive/Low-Impedance Hydrogel Nanocomposites and Highly Conductive Elastomer Nanocomposites",
+    "authors": "JY Kim, G. D. Cha, MS Kim, SP Lee, SH Sunwoo, DH Kim",
+    "citation": "Advanced NanoBiomed Research, 2400143.",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/26.png",
+    "url": "https://onlinelibrary.wiley.com/doi/10.1002/anbr.202400143",
+    "beforeChungAng": false
+  },
+  {
+    "id": 25,
+    "year": 2024,
+    "title": "Biomedical Application of Enzymatically Crosslinked Injectable Hydrogels",
+    "authors": "M Nam, JW Lee, G. D. Cha",
+    "citation": "Gels 10 (10), 640",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/25.png",
+    "url": "https://www.mdpi.com/2310-2861/10/10/640",
+    "beforeChungAng": false
+  },
+  {
+    "id": 24,
+    "year": 2024,
+    "title": "Advances in Flexible, Foldable, and Stretchable Quantum Dot Light-Emitting Diodes: Materials and Fabrication Strategies",
+    "authors": "T Park, JS Kim, D Ko, G. D. Cha, DH Kim, DC Kim",
+    "citation": "Korean Journal of Chemical Engineering, 1-27",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/24.png",
+    "url": "https://link.springer.com/article/10.1007/s11814-024-00236-9",
+    "beforeChungAng": false
+  },
+  {
+    "id": 23,
+    "year": 2024,
+    "title": "Needle‐Like Multifunctional Biphasic Microfiber for Minimally Invasive Implantable Bioelectronics",
+    "authors": "S Nam, G. D. Cha, SH Sunwoo, JH Jeong, H Kang, OK Park, KY Lee, S Oh, ...",
+    "citation": "back cover in Advanced Materials 36 (36), 2470291",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/23.png",
+    "url": "https://onlinelibrary.wiley.com/doi/abs/10.1002/adma.202470291",
+    "beforeChungAng": false
+  },
+  {
+    "id": 22,
+    "year": 2024,
+    "title": "Soft Bioelectronics Using Nanomaterials and Nanostructures for Neuroengineering",
+    "authors": "M Kim, H Lee, S Nam, DH Kim, G. D. Cha",
+    "citation": "Accounts of Chemical Research, 5435-5447",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/22.png",
+    "url": "https://pubs.acs.org/doi/abs/10.1021/acs.accounts.4c00163",
+    "beforeChungAng": false
+  },
+  {
+    "id": 21,
+    "year": 2024,
+    "title": "Wearable and Implantable Light-Emitting Diodes and Their Biomedical Applications",
+    "authors": "G. D. Cha, DH Kim, DC Kim",
+    "citation": "Korean Journal of Chemical Engineering 41 (1), 1-24",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/21.png",
+    "url": "https://link.springer.com/article/10.1007/s11814-023-00006-z",
+    "beforeChungAng": false
+  },
+  {
+    "id": 20,
+    "year": 2024,
+    "title": "Soft Bioelectronics for Neuroengineering: New Horizons in the Treatment of Brain Tumor and Epilepsy",
+    "authors": "S Yoo, M Kim, C Choi, DH Kim, G. D. Cha",
+    "citation": "Advanced Healthcare Materials, 2303563",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/20.png",
+    "url": "https://onlinelibrary.wiley.com/doi/full/10.1002/adhm.202303563",
+    "beforeChungAng": false
+  },
+  {
+    "id": 19,
+    "year": 2023,
+    "title": "Highly Efficient Nitrogen‐Fixing Microbial Hydrogel Device for Sustainable Solar Hydrogen Production",
+    "authors": "WH Lee, CK Yoon, H Park, GH Park, JH Jeong, G. D. Cha, BH Lee, J Lee, ...",
+    "citation": "cover in Advanced Materials 35 (52), 2306092",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/19.png",
+    "url": "https://onlinelibrary.wiley.com/doi/full/10.1002/adma.202306092",
+    "beforeChungAng": false
+  },
+  {
+    "id": 18,
+    "year": 2023,
+    "title": "Minimally‐Invasive and In‐Vivo Hydrogel Patterning Method for In Situ Fabrication of Implantable Hydrogel Devices",
+    "authors": "G. D. Cha, M Kim, OK Park, SH Sunwoo, T Kang, WH Lee, S Nam, T Hyeon, ...",
+    "citation": "Small Methods 7 (9), 2300032",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/18.png",
+    "url": "https://onlinelibrary.wiley.com/doi/abs/10.1002/smtd.202300032",
+    "beforeChungAng": false
+  },
+  {
+    "id": 17,
+    "year": 2023,
+    "title": "Floatable photocatalytic hydrogel nanocomposites for large-scale solar hydrogen production",
+    "authors": "WH Lee, CW Lee, G. D. Cha, BH Lee, JH Jeong, H Park, J Heo, ...",
+    "citation": "Nature nanotechnology 18 (7), 754-762",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/17.png",
+    "url": "https://www.nature.com/articles/s41565-023-01385-4",
+    "beforeChungAng": true
+  },
+  {
+    "id": 16,
+    "year": 2023,
+    "title": "Ventricular tachyarrhythmia treatment and prevention by subthreshold stimulation with stretchable epicardial multichannel electrode array",
+    "authors": "SH Sunwoo, MJ Cha, SI Han, H Kang, YS Cho, G. D. Cha, CS Park, ...",
+    "citation": "Science advances 9 (13), eadf6856",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/16.png",
+    "url": "https://www.science.org/doi/full/10.1126/sciadv.adf6856",
+    "beforeChungAng": true
+  },
+  {
+    "id": 15,
+    "year": 2023,
+    "title": "Penetrative and sustained drug delivery using injectable hydrogel nanocomposites for postsurgical brain tumor treatment",
+    "authors": "T Kang, G. D. Cha, OK Park, HR Cho, M Kim, J Lee, D Kim, B Lee, J Chu, ...",
+    "citation": "ACS nano 17 (6), 5435-5447",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/15.png",
+    "url": "https://pubs.acs.org/doi/abs/10.1021/acsnano.2c10094",
+    "beforeChungAng": true
+  },
+  {
+    "id": 14,
+    "year": 2022,
+    "title": "Local drug delivery strategies for glioblastoma treatment",
+    "authors": "G. D. Cha, S Jung, SH Choi, DH Kim",
+    "citation": "Brain Tumor Research and Treatment 10 (3), 151-157",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/14.png",
+    "url": "https://synapse.koreamed.org/articles/1516081781",
+    "beforeChungAng": true
+  },
+  {
+    "id": 13,
+    "year": 2022,
+    "title": "Toughness and elasticity from phase separation",
+    "authors": "G. D. Cha, DH Kim",
+    "citation": "Nature Materials 21 (3), 266-268",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/13.png",
+    "url": "https://www.nature.com/articles/s41563-022-01214-4",
+    "beforeChungAng": true
+  },
+  {
+    "id": 12,
+    "year": 2022,
+    "title": "Multifunctional Injectable Hydrogel for In Vivo Diagnostic and Therapeutic Applications",
+    "authors": "G. D. Cha, WH Lee, SH Sunwoo, D Kang, T Kang, KW Cho, M Kim, OK Park, ...",
+    "citation": "ACS nano 16 (1), 554-567",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/12.png",
+    "url": "https://pubs.acs.org/doi/abs/10.1021/acsnano.1c07649",
+    "beforeChungAng": true
+  },
+  {
+    "id": 11,
+    "year": 2021,
+    "title": "Flexible and biodegradable electronic implants for diagnosis and treatment of brain diseases",
+    "authors": "WH Lee, G. D. Cha, DH Kim",
+    "citation": "Current Opinion in Biotechnology 72, 13-21",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/11.png",
+    "url": "https://www.sciencedirect.com/science/article/pii/S0958166921001440",
+    "beforeChungAng": true
+  },
+  {
+    "id": 10,
+    "year": 2021,
+    "title": "Highly conductive and elastic nanomembrane for skin electronics",
+    "authors": "D Jung, C Lim, HJ Shim, Y Kim, C Park, J Jung, SI Han, SH Sunwoo, G. D. Cha ...",
+    "citation": "Science 373 (6558), 1022-1026",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/10.png",
+    "url": "https://www.science.org/doi/full/10.1126/science.abh4357",
+    "beforeChungAng": true
+  },
+  {
+    "id": 9,
+    "year": 2021,
+    "title": "Localized delivery of theranostic nanoparticles and high‐energy photons using microneedles‐on‐bioelectronics",
+    "authors": "Y Lee, T Kang, HR Cho, GJ Lee, OK Park, S Kim, B Lee, HM Kim, G. D. Cha, ...",
+    "citation": "Advanced Materials 33 (24), 2100425",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/9.png",
+    "url": "https://onlinelibrary.wiley.com/doi/full/10.1002/adma.202100425",
+    "beforeChungAng": true
+  },
+  {
+    "id": 8,
+    "year": 2021,
+    "title": "A biodegradable secondary battery and its biodegradation mechanism for eco‐friendly energy‐storage systems",
+    "authors": "MH Lee, J Lee, SK Jung, D Kang, MS Park, G. D. Cha, KW Cho, JH Song, ...",
+    "citation": "Advanced Materials 33 (10), 2004902",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/8.png",
+    "url": "https://onlinelibrary.wiley.com/doi/full/10.1002/adma.202004902",
+    "beforeChungAng": true
+  },
+  {
+    "id": 7,
+    "year": 2020,
+    "title": "Advances in soft bioelectronics for brain research and clinical neuroengineering",
+    "authors": "SH Sunwoo, SI Han, H Joo, G. D. Cha, D Kim, SH Choi, T Hyeon, DH Kim",
+    "citation": "Matter 3 (6), 1923-1947",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/7.png",
+    "url": "https://www.cell.com/matter/fulltext/S2590-2385(20)30574-9",
+    "beforeChungAng": true
+  },
+  {
+    "id": 6,
+    "year": 2020,
+    "title": "Advances in drug delivery technology for the treatment of glioblastoma multiforme",
+    "authors": "G. D. Cha, T Kang, S Baik, D Kim, SH Choi, T Hyeon, DH Kim",
+    "citation": "Journal of Controlled Release 328, 350-367",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/6.png",
+    "url": "https://www.sciencedirect.com/science/article/pii/S0168365920305101",
+    "beforeChungAng": true
+  },
+  {
+    "id": 5,
+    "year": 2020,
+    "title": "Materials engineering, processing, and device application of hydrogel nanocomposites",
+    "authors": "G. D. Cha, WH Lee, C Lim, MK Choi, DH Kim",
+    "citation": "Nanoscale 12 (19), 10456-10473",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/5.png",
+    "url": "https://pubs.rsc.org/en/content/articlehtml/2020/nr/d0nr01456g",
+    "beforeChungAng": true
+  },
+  {
+    "id": 4,
+    "year": 2019,
+    "title": "Flexible, sticky, and biodegradable wireless device for drug delivery to brain tumors",
+    "authors": "J Lee, HR Cho, G. D. Cha, H Seo, S Lee, CK Park, JW Kim, S Qiao, L Wang, ...",
+    "citation": "Nature communications 10 (1), 5205",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/4.png",
+    "url": "https://www.nature.com/articles/s41467-019-13198-y",
+    "beforeChungAng": true
+  },
+  {
+    "id": 3,
+    "year": 2019,
+    "title": "Bioresorbable electronic implants: history, materials, fabrication, devices, and clinical applications",
+    "authors": "G. D. Cha, D Kang, J Lee, DH Kim",
+    "citation": "Advanced healthcare materials 8 (11), 1801660",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/3.png",
+    "url": "https://onlinelibrary.wiley.com/doi/full/10.1002/adhm.201801660",
+    "beforeChungAng": true
+  },
+  {
+    "id": 2,
+    "year": 2018,
+    "title": "Deformable inorganic semiconductor",
+    "authors": "DH Kim, G. D. Cha",
+    "citation": "Nature Materials 17 (5), 388-389",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/2.png",
+    "url": "https://www.nature.com/articles/s41563-018-0066-9",
+    "beforeChungAng": true
+  },
+  {
+    "id": 1,
+    "year": 2017,
+    "title": "Ultra-Wideband Multi-Dye-Sensitized Upconverting Nanoparticles for Information Security Application",
+    "authors": "J Lee, B Yoo, H Lee, G. D. Cha, HS Lee, Y Cho, SY Kim, H Seo, W Lee, ...",
+    "citation": "Advanced Materials (Deerfield Beach, Fla.) 29 (1)",
+    "image": "https://kdg4376.github.io/Lab_Publications/images/1.png",
+    "url": "https://onlinelibrary.wiley.com/doi/10.1002/adma.201603169",
+    "beforeChungAng": true
+  }
+];
+const host = document.getElementById('publications');
+const make = (tag, className, text) => { const el=document.createElement(tag); if(className) el.className=className; if(text!==undefined) el.textContent=text; return el; };
+function link(url,text,className){const a=make('a',className,text);a.href=url;a.target='_blank';a.rel='noopener noreferrer';return a;}
+function authorsNode(text){const el=make('p','authors');const pieces=text.split(/(G\. D\. Cha)/g);for(const piece of pieces)el.append(piece==='G. D. Cha'?make('strong','',piece):document.createTextNode(piece));return el;}
+function card(p){
+ const article=make('article','paper');article.id='paper-'+p.id;
+ const figure=make('div','figure');const img=make('img');img.src=p.image;img.alt='Figure for '+p.title;img.loading='lazy';img.decoding='async';img.addEventListener('error',()=>figure.replaceChildren(make('span','missing','Preview unavailable')),{once:true});figure.append(img);
+ const info=make('div','info');info.append(make('span','number','PUBLICATION '+p.id));const heading=make('h3','title');heading.append(link(p.url,p.title));info.append(heading,authorsNode(p.authors));if(p.citation)info.append(make('p','citation',p.citation));info.append(link(p.url,'View article ↗','article-link'));article.append(figure,info);return article;
+}
+const sorted=[...publications].sort((a,b)=>b.year-a.year||b.id-a.id);
+const years=[...new Set(sorted.map(p=>p.year))];
+document.getElementById('overview').textContent=`${publications.length} publications · ${Math.min(...years)}–${Math.max(...years)}`;
+let openYears=new Set([years[0]]);
+function render(query=''){
+ const q=query.trim().toLowerCase();const matched=sorted.filter(p=>!q||[p.title,p.authors,p.citation,p.year].join(' ').toLowerCase().includes(q));const fragment=document.createDocumentFragment();
+ for(const year of years){const items=matched.filter(p=>p.year===year);if(!items.length)continue;
+ const details=make('details','year');details.open=!!q||openYears.has(year);const summary=make('summary');summary.append(make('span','',String(year)),make('span','count',`${items.length} ${items.length===1?'publication':'publications'}`));const arrow=make('span','chevron');arrow.setAttribute('aria-hidden','true');summary.append(arrow);const list=make('div','paper-list');let dividerShown=false;
+ for(const p of items){if(year===2023&&p.beforeChungAng&&!dividerShown){list.append(make('div','divider','Before Chung-Ang University'));dividerShown=true;}list.append(card(p));}
+ details.append(summary,list);details.addEventListener('toggle',()=>{if(!document.getElementById('search').value.trim()){if(details.open)openYears.add(year);else openYears.delete(year);}});fragment.append(details);
+ }
+ if(!matched.length)fragment.append(make('p','empty','No publications match your search.'));
+ host.replaceChildren(fragment);const status=document.getElementById('results');status.hidden=!q;status.textContent=`${matched.length} of ${publications.length} publications found.`;
+}
+document.getElementById('search').addEventListener('input',e=>render(e.target.value));
+for(const [id,open] of [['expand',true],['collapse',false]])document.getElementById(id).addEventListener('click',()=>{host.querySelectorAll('details').forEach(d=>d.open=open);if(!document.getElementById('search').value.trim())openYears=new Set(open?years:[]);});
+let printState=[];window.addEventListener('beforeprint',()=>{printState=[...host.querySelectorAll('details')].map(d=>[d,d.open]);printState.forEach(([d])=>d.open=true);});window.addEventListener('afterprint',()=>printState.forEach(([d,open])=>d.open=open));
+render();
 </script>
-
-</head><body>
-<div class="year-header" onclick="toggleVisibility('y2025')">▼ 2025</div>
-<div class="paper-list" id="y2025">
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/43.png">
-<div class="info">
-<div class="title"><a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/adma.202516002?af=R" target="_blank">2D Silver Nanosheet Assembly for an Isotropic, Stretchable, and Highly Conductive Nanomembrane</a></div>
-<div class="meta">M. Kim, S. Jung, S. Kim, M.-k. Choi, J.-H. Hong, K. Kim, C. Park, K. J. Yu, S.-H. Sunwoo, <strong>G. D. Cha</strong>, Q. Liu, D.-H. Kim, T.-W. Kim<br>Advanced Materials (2025)</div>
-</div>
-</div>
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/42.png">
-<div class="info">
-<div class="title"><a href="https://pubs.rsc.org/en/content/articlelanding/2026/nh/d5nh00540j" target="_blank">Chemically Anchored Metal-Hydrogel Bilayer Structures for Ultrasoft and Highly Conductive Biointerfaces</a></div>
-<div class="meta">Y. A. Lee, J. Y. Lee, J. Kim, H. Lee, S. Park, S.-H. Sunwoo, <strong>G. D. Cha</strong>, D.-H. Kim<br>Nanoscale Horizons (2025)</div>
-</div>
-</div>
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/41.png">
-<div class="info">
-<div class="title"><a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/adma.202514081" target="_blank">Mesenchymal Stem Cell-Inspired Microneedle Platform: NIR-Responsive Therapeutic Delivery for Accelerated Chronic Wound Repair</a></div>
-<div class="meta">C. H. Moon, H. G. Ko, H. Lee, S. Bang, H. S. Kang, J. Y. Gwon, J. H. Seo, M. Kang, D. Y. Lee, S.-H. Lee, <strong>G. D. Cha</strong>, K. Yang, D. Lim, H. Kang, S. R. Shin, H. Y. Kim, H.-D. Jung<br>Advanced Materials (2025)</div>
-</div>
-</div>
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/40.png">
-<div class="info">
-<div class="title"><a href="https://www.nature.com/articles/s41427-025-00621-8" target="_blank">Intrinsically stretchable and transparent conductors for next-generation soft optoelectronics</a></div>
-<div class="meta">J. S. Kim, J. Park, D. H. Kim, D. Kim, D.-H. Kim, D. C. Kim, <strong>G. D. Cha</strong><br>Optical Materials Express 16, 55 (2025)</div>
-</div>
-</div>
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/39.png">
-<div class="info">
-<div class="title"><a href="https://pubs.rsc.org/en/content/articlehtml/2025/lc/d5lc00880h" target="_blank">Multifunctional microfluidic suture for accelerated healing and wound monitoring</a></div>
-<div class="meta">Y. Kim, C. Park, <strong>G. D. Cha</strong>, S.-H. Sunwoo, D.-H. Kim<br>Lab on a Chip 25, 6582 (2025)</div>
-</div>
-</div>
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/38.png">
-<div class="info">
-<div class="title"><a href="https://www.nature.com/articles/s44328-025-00055-w" target="_blank">Emerging roles of hydrogels, organogels, and their hybrids in soft bioelectronics and bioplatforms</a></div>
-<div class="meta">M. Y. Lee, E. S. Lee, N. Y. Ko, D.-H. Kim, <strong>G. D. Cha</strong>, J. H. Koo<br>npj Biosensing 2, 35 (2025)</div>
-</div>
-</div>
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/37.png">
-<div class="info">
-<div class="title"><a href="https://www.mdpi.com/2313-7673/10/10/689" target="_blank">Multifunctional Liposomes: Smart Nanomaterials for Enhanced Photodynamic Therapy</a></div>
-<div class="meta">J.-W. Yu, D. G. Kim, <strong>G. D. Cha</strong><br>Biomimetics 10, 689 (2025)</div>
-</div>
-</div>
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/36.png">
-<div class="info">
-<div class="title"><a href="https://link.springer.com/article/10.1186/s44301-025-00012-6" target="_blank">Integrated Closed-Loop Implantable Bioelectronic System Based on Intrinsically Stretchable and Conductive Nanocomposites</a></div>
-<div class="meta">M. Y, Y. Kim, S. Nam, <strong>G. D. Cha</strong>, D.-H. Kim<br>Health Nanotechnology 1, 12 (2025)</div>
-</div>
-</div>
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/35.png">
-<div class="info">
-<div class="title"><a href="https://pubs.rsc.org/en/content/articlelanding/2025/nh/d5nh00418g" target="_blank">Multifunctional electronic skin integrating dual-mode optical and pressure sensors for caregiving robots</a></div>
-<div class="meta">H. Heo, J. Park, D. Ko, K. Lee, J. Lee, H. Joo, J. Yang, <strong>G. D. Cha</strong>, D.-H. Kim, D. C. Kim<br>Nanoscale Horizons 10, 2896 (2025)</div>
-</div>
-</div>
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/34.png">
-<div class="info">
-<div class="title"><a href="https://doi.org/10.1002/bmm2.70043" target="_blank">Fiber-type soft bioelectronics for wearable and implantable sensing and therapy</a></div>
-<div class="meta">H. Kim, H. Y. Kim, J. H. Koo, <strong>G. D. Cha</strong>, D.-H. Kim, H. J. Kim<br>Biomedical Engineering Materials (2025)</div>
-</div>
-</div>
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/33.png">
-<div class="info">
-<div class="title"><a href="https://www.sciencedirect.com/science/article/pii/S0010854525003716" target="_blank">Smart Nanomaterials for Multimodal Theranostics and Tissue Regeneration</a></div>
-<div class="meta">H Lee, KS Kim, I Zare, SJ Bang, HS Kang, CH Moon, JY Gwon, JH Seo, H Joo, Y Cho, H Jung, H Rha, D Y Lee, K Yang, D Lim, SH Lee, <strong>GD Cha</strong>, K Na, MH Kang, HD Jung, H Kang<br>Coordination Chemistry Reviews 541, 216801 (2025)</div>
-</div>
-</div>
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/32.png">
-<div class="info">
-<div class="title"><a href="https://www.nature.com/articles/s41565-025-01957-6" target="_blank">Polymeric stabilization at gas-liquid interface enables high-performance durable photocatalysis</a></div>
-<div class="meta">WH Lee, H Park, CW Lee, H Kim, JH Jeong, JI Yun, SU Bang, J Heo, KH Ahn, <strong>GD Cha</strong>, M Bootharaju, BH Lee, J Ryu, M Kim, T Hyeon, DH. Kim<br>Nature Nanotechnology</div>
-</div>
-</div>
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/31.png">
-<div class="info">
-<div class="title"><a href="https://www.sciencedirect.com/science/article/pii/S0924224425002249" target="_blank">Development of Cultivated Fish Meat: Advances in Cellular Agriculture, Biomaterials, and Scaffolding Techniques</a></div>
-<div class="meta">HS Kang, S Bang, H Lee, CH Moon, JY Gwon, JH Seo, <strong>GD Cha</strong>, DH Lee, KY Lee, H Hwang, KH Yoo, JY Kim, H Kang, SH Lee, HH Park, DY Lee<br>Trends in Food Science & Technology (2025): 105088.</div>
-</div>
-</div>
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/30.png">
-<div class="info">
-<div class="title"><a href="https://pubs.aip.org/aip/apb/article/9/2/026118/3347386" target="_blank">Liquid metal-based stretchable bioelectronic fiber for electrical stimulation and drug delivery in minimally invasive cardiac therapy</a></div>
-<div class="meta">CH Park, YS Kim, SH Nam, HJ Kang, JH Moon, JH Kim, <strong>GD Cha</strong>, SP Lee, SH Sunwoo, DH Kim <br></div>
-</div>
-</div>
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/29.png">
-<div class="info">
-<div class="title"><a href="https://www.mdpi.com/1422-0067/26/11/4987" target="_blank">Extracellular-Matrix-Mimetic Hydrogels by Using Nanomaterials</a></div>
-<div class="meta">DG Kim and <strong>GD Cha</strong><br>, International Journal of Molecular Sciences 26, 11 (2025)</div>
-</div>
-</div>
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/28.png">
-<div class="info">
-<div class="title"><a href="https://advanced.onlinelibrary.wiley.com/doi/full/10.1002/adfm.202416694" target="_blank">Joule-Assisted Nanotherapeutic Urethral Stent (JANUS) forSpatiotemporal Theragenerative Treatment of UrethralStrictures</a></div>
-<div class="meta">YH Na, YB Park, H Lee, SH Kim, SJ Bang, HS Kang, CH Moon, JY Gwon, JH Seo, MH Kang, SH Lee, <strong>GD Cha</strong>, WR Park, HM Kang, JH Park, HD Jung<br>Advanced Functional Materials (2025): 2416694.</div>
-</div>
-</div>
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/27.png">
-<div class="info">
-<div class="title"><a href="https://www.mdpi.com/2313-7673/10/1/49" target="_blank">The Potential of Mesenchymal Stem Cell-Derived Exosomes to Treat Diabetes Mellitus</a></div>
-<div class="meta">JE Kim, JW Lee, <strong>GD Cha</strong>, JK Yoon<br>Biomimetics 10, 49 (2025).</div>
-</div>
-</div>
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/26.png">
-<div class="info">
-<div class="title"><a href="https://onlinelibrary.wiley.com/doi/10.1002/anbr.202400143" target="_blank">Soft Cardiac Patch Using a Bifacial Architecture of Adhesive/Low-Impedance Hydrogel Nanocomposites and Highly Conductive Elastomer Nanocomposites</a></div>
-<div class="meta">JY Kim, <strong>GD Cha</strong>, MS Kim, SP Lee, SH Sunwoo, DH Kim<br>Advanced NanoBiomed Research, 2400143. </div>
-</div>
-</div>
-</div>
-<div class="year-header" onclick="toggleVisibility('y2024')">▼ 2024</div>
-<div class="paper-list" id="y2024">
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/25.png">
-<div class="info">
-<div class="title"><a href="https://www.mdpi.com/2310-2861/10/10/640" target="_blank">Biomedical Application of Enzymatically Crosslinked Injectable Hydrogels</a></div>
-<div class="meta">M Nam, JW Lee, <strong>GD Cha</strong><br>Gels 10 (10), 640</div>
-</div>
-</div>
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/24.png">
-<div class="info">
-<div class="title"><a href="https://link.springer.com/article/10.1007/s11814-024-00236-9" target="_blank">Advances in Flexible, Foldable, and Stretchable Quantum Dot Light-Emitting Diodes: Materials and Fabrication Strategies</a></div>
-<div class="meta">T Park, JS Kim, D Ko, <strong>GD Cha</strong>, DH Kim, DC Kim<br>Korean Journal of Chemical Engineering, 1-27</div>
-</div>
-</div>
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/23.png">
-<div class="info">
-<div class="title"><a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/adma.202470291" target="_blank">Needle‐Like Multifunctional Biphasic Microfiber for Minimally Invasive Implantable Bioelectronics</a></div>
-<div class="meta">S Nam, <strong>GD Cha</strong>, SH Sunwoo, JH Jeong, H Kang, OK Park, KY Lee, S Oh, ...<br>back cover in Advanced Materials 36 (36), 2470291 </div>
-</div>
-</div>
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/22.png">
-<div class="info">
-<div class="title"><a href="https://pubs.acs.org/doi/abs/10.1021/acs.accounts.4c00163" target="_blank">Soft Bioelectronics Using Nanomaterials and Nanostructures for Neuroengineering</a></div>
-<div class="meta">M Kim, H Lee, S Nam, DH Kim, <strong>GD Cha</strong><br>Accounts of Chemical Research, 5435-5447</div>
-</div>
-</div>
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/21.png">
-<div class="info">
-<div class="title"><a href="https://link.springer.com/article/10.1007/s11814-023-00006-z" target="_blank">Wearable and Implantable Light-Emitting Diodes and Their Biomedical Applications</a></div>
-<div class="meta"><strong>GD Cha</strong>, DH Kim, DC Kim<br>Korean Journal of Chemical Engineering 41 (1), 1-24</div>
-</div>
-</div>
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/20.png">
-<div class="info">
-<div class="title"><a href="https://onlinelibrary.wiley.com/doi/full/10.1002/adhm.202303563" target="_blank">Soft Bioelectronics for Neuroengineering: New Horizons in the Treatment of Brain Tumor and Epilepsy</a></div>
-<div class="meta">S Yoo, M Kim, C Choi, DH Kim, <strong>GD Cha</strong><br>Advanced Healthcare Materials, 2303563</div>
-</div>
-</div>
-</div>
-<div class="year-header" onclick="toggleVisibility('y2023')">▼ 2023</div>
-<div class="paper-list" id="y2023">
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/19.png">
-<div class="info">
-<div class="title"><a href="https://onlinelibrary.wiley.com/doi/full/10.1002/adma.202306092" target="_blank">Highly Efficient Nitrogen‐Fixing Microbial Hydrogel Device for Sustainable Solar Hydrogen Production</a></div>
-<div class="meta">WH Lee, CK Yoon, H Park, GH Park, JH Jeong, <strong>GD Cha</strong>, BH Lee, J Lee, ...<br>cover in Advanced Materials 35 (52), 2306092</div>
-</div>
-</div>
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/18.png">
-<div class="info">
-<div class="title"><a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/smtd.202300032" target="_blank">Minimally‐Invasive and In‐Vivo Hydrogel Patterning Method for In Situ Fabrication of Implantable Hydrogel Devices</a></div>
-<div class="meta"><strong>GD Cha</strong>, M Kim, OK Park, SH Sunwoo, T Kang, WH Lee, S Nam, T Hyeon, ...<br>Small Methods 7 (9), 2300032</div>
-</div>
-</div>
-<div class="divider">Before Chung-Ang University</div>
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/17.png">
-<div class="info">
-<div class="title"><a href="https://www.nature.com/articles/s41565-023-01385-4" target="_blank">Floatable photocatalytic hydrogel nanocomposites for large-scale solar hydrogen production</a></div>
-<div class="meta">WH Lee, CW Lee, <strong>GD Cha</strong>, BH Lee, JH Jeong, H Park, J Heo, ...<br>Nature nanotechnology 18 (7), 754-762</div>
-</div>
-</div>
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/16.png">
-<div class="info">
-<div class="title"><a href="https://www.science.org/doi/full/10.1126/sciadv.adf6856" target="_blank">Ventricular tachyarrhythmia treatment and prevention by subthreshold stimulation with stretchable epicardial multichannel electrode array</a></div>
-<div class="meta">SH Sunwoo, MJ Cha, SI Han, H Kang, YS Cho, <strong>GD Cha</strong>, CS Park, ...<br>Science advances 9 (13), eadf6856</div>
-</div>
-</div>
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/15.png">
-<div class="info">
-<div class="title"><a href="https://pubs.acs.org/doi/abs/10.1021/acsnano.2c10094" target="_blank">Penetrative and sustained drug delivery using injectable hydrogel nanocomposites for postsurgical brain tumor treatment</a></div>
-<div class="meta">T Kang, <strong>GD Cha</strong>, OK Park, HR Cho, M Kim, J Lee, D Kim, B Lee, J Chu, ...<br>ACS nano 17 (6), 5435-5447</div>
-</div>
-</div>
-</div>
-<div class="year-header" onclick="toggleVisibility('y2022')">▼ 2022</div>
-<div class="paper-list" id="y2022">
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/14.png">
-<div class="info">
-<div class="title"><a href="https://synapse.koreamed.org/articles/1516081781" target="_blank">Local drug delivery strategies for glioblastoma treatment</a></div>
-<div class="meta"><strong>GD Cha</strong>, S Jung, SH Choi, DH Kim<br>Brain Tumor Research and Treatment 10 (3), 151-157</div>
-</div>
-</div>
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/13.png">
-<div class="info">
-<div class="title"><a href="https://www.nature.com/articles/s41563-022-01214-4" target="_blank">Toughness and elasticity from phase separation</a></div>
-<div class="meta"><strong>GD Cha</strong>, DH Kim<br>Nature Materials 21 (3), 266-268</div>
-</div>
-</div>
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/12.png">
-<div class="info">
-<div class="title"><a href="https://pubs.acs.org/doi/abs/10.1021/acsnano.1c07649" target="_blank">Multifunctional Injectable Hydrogel for In Vivo Diagnostic and Therapeutic Applications</a></div>
-<div class="meta"><strong>GD Cha</strong>, WH Lee, SH Sunwoo, D Kang, T Kang, KW Cho, M Kim, OK Park, ...<br>ACS nano 16 (1), 554-567</div>
-</div>
-</div>
-</div>
-<div class="year-header" onclick="toggleVisibility('y2021')">▼ 2021</div>
-<div class="paper-list" id="y2021">
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/11.png">
-<div class="info">
-<div class="title"><a href="https://www.sciencedirect.com/science/article/pii/S0958166921001440" target="_blank">Flexible and biodegradable electronic implants for diagnosis and treatment of brain diseases</a></div>
-<div class="meta">WH Lee, <strong>GD Cha</strong>, DH Kim<br>Current Opinion in Biotechnology 72, 13-21</div>
-</div>
-</div>
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/10.png">
-<div class="info">
-<div class="title"><a href="https://www.science.org/doi/full/10.1126/science.abh4357" target="_blank">Highly conductive and elastic nanomembrane for skin electronics</a></div>
-<div class="meta">D Jung, C Lim, HJ Shim, Y Kim, C Park, J Jung, SI Han, SH Sunwoo, GD cha ...<br>Science 373 (6558), 1022-1026</div>
-</div>
-</div>
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/9.png">
-<div class="info">
-<div class="title"><a href="https://onlinelibrary.wiley.com/doi/full/10.1002/adma.202100425" target="_blank">Localized delivery of theranostic nanoparticles and high‐energy photons using microneedles‐on‐bioelectronics</a></div>
-<div class="meta">Y Lee, T Kang, HR Cho, GJ Lee, OK Park, S Kim, B Lee, HM Kim, <strong>GD Cha</strong>, ...<br>Advanced Materials 33 (24), 2100425</div>
-</div>
-</div>
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/8.png">
-<div class="info">
-<div class="title"><a href="https://onlinelibrary.wiley.com/doi/full/10.1002/adma.202004902" target="_blank">A biodegradable secondary battery and its biodegradation mechanism for eco‐friendly energy‐storage systems</a></div>
-<div class="meta">MH Lee, J Lee, SK Jung, D Kang, MS Park, <strong>GD Cha</strong>, KW Cho, JH Song, ...<br>Advanced Materials 33 (10), 2004902</div>
-</div>
-</div>
-</div>
-<div class="year-header" onclick="toggleVisibility('y2020')">▼ 2020</div>
-<div class="paper-list" id="y2020">
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/7.png">
-<div class="info">
-<div class="title"><a href="https://www.cell.com/matter/fulltext/S2590-2385(20)30574-9" target="_blank">Advances in soft bioelectronics for brain research and clinical neuroengineering</a></div>
-<div class="meta">SH Sunwoo, SI Han, H Joo, <strong>GD Cha</strong>, D Kim, SH Choi, T Hyeon, DH Kim<br>Matter 3 (6), 1923-1947</div>
-</div>
-</div>
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/6.png">
-<div class="info">
-<div class="title"><a href="https://www.sciencedirect.com/science/article/pii/S0168365920305101" target="_blank">Advances in drug delivery technology for the treatment of glioblastoma multiforme</a></div>
-<div class="meta"><strong>GD Cha</strong>, T Kang, S Baik, D Kim, SH Choi, T Hyeon, DH Kim<br>Journal of Controlled Release 328, 350-367</div>
-</div>
-</div>
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/5.png">
-<div class="info">
-<div class="title"><a href="https://pubs.rsc.org/en/content/articlehtml/2020/nr/d0nr01456g" target="_blank">Materials engineering, processing, and device application of hydrogel nanocomposites</a></div>
-<div class="meta"><strong>GD Cha</strong>, WH Lee, C Lim, MK Choi, DH Kim<br>Nanoscale 12 (19), 10456-10473</div>
-</div>
-</div>
-</div>
-<div class="year-header" onclick="toggleVisibility('y2019')">▼ 2019</div>
-<div class="paper-list" id="y2019">
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/4.png">
-<div class="info">
-<div class="title"><a href="https://www.nature.com/articles/s41467-019-13198-y" target="_blank">Flexible, sticky, and biodegradable wireless device for drug delivery to brain tumors</a></div>
-<div class="meta">J Lee, HR Cho, <strong>GD Cha</strong>, H Seo, S Lee, CK Park, JW Kim, S Qiao, L Wang, ...<br>Nature communications 10 (1), 5205</div>
-</div>
-</div>
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/3.png">
-<div class="info">
-<div class="title"><a href="https://onlinelibrary.wiley.com/doi/full/10.1002/adhm.201801660" target="_blank">Bioresorbable electronic implants: history, materials, fabrication, devices, and clinical applications</a></div>
-<div class="meta"><strong>GD Cha</strong>, D Kang, J Lee, DH Kim<br>Advanced healthcare materials 8 (11), 1801660</div>
-</div>
-</div>
-</div>
-<div class="year-header" onclick="toggleVisibility('y2018')">▼ 2018</div>
-<div class="paper-list" id="y2018">
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/2.png">
-<div class="info">
-<div class="title"><a href="https://www.nature.com/articles/s41563-018-0066-9" target="_blank">Deformable inorganic semiconductor</a></div>
-<div class="meta">DH Kim, <strong>GD Cha</strong><br>Nature Materials 17 (5), 388-389</div>
-</div>
-</div>
-</div>
-<div class="year-header" onclick="toggleVisibility('y2017')">▼ 2017</div>
-<div class="paper-list" id="y2017">
-<div class="paper">
-<img src="https://kdg4376.github.io/Lab_Publications/images/1.png">
-<div class="info">
-<div class="title"><a href="https://onlinelibrary.wiley.com/doi/10.1002/adma.201603169" target="_blank">Ultra-Wideband Multi-Dye-Sensitized Upconverting Nanoparticles for Information Security Application</a></div>
-<div class="meta">J Lee, B Yoo, H Lee, <strong>GD Cha</strong>, HS Lee, Y Cho, SY Kim, H Seo, W Lee, ...<br>Advanced Materials (Deerfield Beach, Fla.) 29 (1)</div>
-</div>
-</div>
-</div>
-</body></html>
+</body>
+</html>
